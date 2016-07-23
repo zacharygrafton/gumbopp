@@ -13,8 +13,15 @@ public:
   Node(const Node& other);
   ~Node();
   Node GetParent();
+
+  bool IsElement() const;
+  bool IsComment() const;
+  bool IsWhitespace() const;
+  bool IsText() const;
+  bool IsCDATA() const;
+
   string_view GetText() const;
-  string_view GetTag() const;
+  string_view GetElement() const;
 private:
   friend class Document;
   Node(std::function<void(Node&)>&& populator);

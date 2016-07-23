@@ -13,4 +13,17 @@ BOOST_AUTO_TEST_CASE( get_name ) {
   BOOST_CHECK(document.GetName() == "html");
 }
 
+BOOST_AUTO_TEST_CASE( iterators ) {
+  gumbopp::Document document = gumbopp::Parser::parse("<!DOCTYPE html><!-- test --><html><head><title></title></head><body></body></html>");
 
+  auto begin = document.begin();
+  auto end = document.end();
+
+  auto location = std::find_if(begin, end, [](const auto& n) {
+    if(n.IsElement())
+      return n.GetElement() == "html";
+    return false;
+  });
+
+  BOOST_CHECK(location != end);
+}
