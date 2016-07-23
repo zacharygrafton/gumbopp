@@ -15,6 +15,10 @@ public:
   Document(Document&&);
   ~Document();
 
+  string_view GetName() const;
+  string_view GetPublicIdentifier() const;
+  string_view GetSystemIdentifier() const;
+
   Node GetRoot() const;
 private:
   friend class Parser;
