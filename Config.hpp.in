@@ -1,0 +1,22 @@
+#ifndef GUMBOPP_CONFIG_HPP
+#define GUBMOPP_CONFIG_HPP
+
+#cmakedefine GUMBOPP_HAS_NONEXP_STRINGVIEW
+#ifdef GUMBOPP_HAS_NONEXP_STRINGVIEW
+#include <string_view>
+#else
+#include <experimental/string_view>
+#endif
+
+namespace gumbopp {
+
+#ifdef GUMBOPP_HAS_NONEXP_STRINGVIEW
+using string_view = std::string_view;
+#else
+using string_view = std::experimental::string_view;
+#endif
+
+}
+
+#endif
+
