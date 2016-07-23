@@ -4,6 +4,7 @@
 #include <3rdParty/include/gumbo.h>
 #include "private/DocumentImpl.hpp"
 #include "private/NodeImpl.hpp"
+#include <gumbopp/Exceptions.hpp>
 
 namespace gumbopp {
 
@@ -24,14 +25,23 @@ Node Document::GetRoot() const {
 }
 
 string_view Document::GetName() const {
+  if(impl->data->document->type != GUMBO_NODE_DOCUMENT)
+    throw NotADocumentException();
+
   return string_view { impl->data->document->v.document.name };
 }
 
 string_view Document::GetPublicIdentifier() const {
+  if(impl->data->document->type != GUMBO_NODE_DOCUMENT)
+    throw NotADocumentException();
+
   return string_view { impl->data->document->v.document.public_identifier };
 }
 
 string_view Document::GetSystemIdentifier() const {
+  if(impl->data->document->type != GUMBO_NODE_DOCUMENT)
+    throw NotADocumentException();
+
   return string_view { impl->data->document->v.document.system_identifier };
 }
 
