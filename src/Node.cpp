@@ -1,5 +1,6 @@
 #include <gumbopp/Node.hpp>
 #include "private/NodeImpl.hpp"
+#include <gumbopp/Exceptions.hpp>
 
 namespace gumbopp {
 
@@ -18,7 +19,7 @@ string_view Node::GetTag() const {
   if(impl->data->type == GUMBO_NODE_ELEMENT)
     return string_view { gumbo_normalized_tagname(impl->data->v.element.tag) };
 
-  return string_view {};
+  throw NotAnElementException();
 }
 
 }
