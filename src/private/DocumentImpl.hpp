@@ -8,7 +8,7 @@ namespace gumbopp {
 
 class Document::Pimpl {
 public:
-  GumboOutput* root;
+  GumboOutput* data;
 };
 
 }

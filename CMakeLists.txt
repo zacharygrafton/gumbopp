@@ -30,6 +30,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(gumbopp_sources
   src/Document.cpp
   src/Node.cpp
+  src/Parser.cpp
 )
 
 add_library(gumbopp ${gumbopp_sources})

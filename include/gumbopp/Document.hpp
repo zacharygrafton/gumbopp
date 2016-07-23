@@ -12,13 +12,15 @@ class Node;
 
 class Document {
 public:
-  Document(const std::string& data);
+  Document(Document&&);
   ~Document();
 
   Node GetRoot() const;
 private:
-  class Pimpl;
+  friend class Parser;
+  Document(std::function<void(Document&)>&&);
 
+  class Pimpl;
   std::unique_ptr<Pimpl> impl;
 };
 }
