@@ -8,8 +8,7 @@ namespace gumbopp {
 
 class Document::Pimpl {
 public:
-  explicit Pimpl(GumboOutput*);
-  std::unique_ptr<GumboOutput, void(*)(GumboOutput*)> root;
+  GumboOutput* root;
 };
 
 }

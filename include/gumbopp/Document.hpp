@@ -9,6 +9,7 @@ namespace gumbopp {
 class Document {
 public:
   Document(const std::string& data);
+  ~Document();
 private:
   class Pimpl;
 
