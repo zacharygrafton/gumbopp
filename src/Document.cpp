@@ -1,6 +1,7 @@
 #include <gumbopp/Document.hpp>
 #include <gumbopp/Node.hpp>
 #include <gumbo.h>
+#include <3rdParty/include/gumbo.h>
 #include "private/DocumentImpl.hpp"
 #include "private/NodeImpl.hpp"
 
@@ -20,6 +21,18 @@ Document::~Document() {
 
 Node Document::GetRoot() const {
   return Node { [&](Node& n) { n.impl->data = impl->data->root; }};
+}
+
+string_view Document::GetName() const {
+  return string_view { impl->data->document->v.document.name };
+}
+
+string_view Document::GetPublicIdentifier() const {
+  return string_view { impl->data->document->v.document.public_identifier };
+}
+
+string_view Document::GetSystemIdentifier() const {
+  return string_view { impl->data->document->v.document.system_identifier };
 }
 
 }
