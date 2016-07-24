@@ -1,0 +1,9 @@
+get_filename_component(GUMBOPP_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+
+set(GUMBOPP_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
+
+if(NOT TARGET gumbopp AND NOT GUMBOPP_BINARY_DIR)
+  include("${GUMBOPP_CMAKE_DIR}/gumbopp.cmake")
+endif()
+
+set(GUMBOPP_LIBRARIES gumbopp)

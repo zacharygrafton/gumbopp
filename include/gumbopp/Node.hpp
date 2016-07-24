@@ -11,39 +11,47 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef GUMBOPP_DOCUMENT_HPP
-#define GUMBOPP_DOCUMENT_HPP
+#ifndef GUMBOPP_NODE_HPP
+#define GUMBOPP_NODE_HPP
 
 #include "Config.hpp"
-#include <gumbopp/Node.hpp>
-#include <gumbopp/NodeIterator.hpp>
 
+#include <functional>
 #include <memory>
-#include <string>
-#include <boost/iterator/iterator_facade.hpp>
 
 namespace gumbopp {
+class NodeIterator;
+class Attributes;
 
-class Document {
+class Node {
 public:
   using iterator = NodeIterator;
-  Document(Document&&);
-  ~Document();
 
-  string_view GetName() const;
-  string_view GetPublicIdentifier() const;
-  string_view GetSystemIdentifier() const;
+  Node(const Node& other);
+  ~Node();
+  Node GetParent();
 
-  Node GetRoot() const;
+  bool IsElement() const;
+  bool IsComment() const;
+  bool IsWhitespace() const;
+  bool IsText() const;
+  bool IsCDATA() const;
+
+  string_view GetText() const;
+  string_view GetElement() const;
 
   iterator begin() const;
   iterator end() const;
+
+  Attributes GetAttributes() const;
 private:
-  friend class Parser;
-  Document(std::function<void(Document&)>&&);
+  friend class Document;
+  friend class NodeIterator;
+  Node(std::function<void(Node&)>&& populator);
 
   class Pimpl;
   std::unique_ptr<Pimpl> impl;
 };
+
 }
-#endif
+#endif //GUMBOPP_NODE_HPP

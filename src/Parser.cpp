@@ -11,19 +11,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef GUMBOPP_DOCUMENTIMPL_HPP
-#define GUMBOPP_DOCUMENTIMPL_HPP
-
+#include <gumbopp/Parser.hpp>
 #include <gumbopp/Document.hpp>
-#include <gumbo.h>
+#include "private/DocumentImpl.hpp"
 
 namespace gumbopp {
 
-class Document::Pimpl {
-public:
-  GumboOutput* data;
-};
-
+Document Parser::parse(const std::string& data) {
+  Document document { [&](Document& doc) { doc.impl->data = gumbo_parse(data.c_str()); } };
+  return document;
 }
 
-#endif
+}

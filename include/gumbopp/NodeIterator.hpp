@@ -11,39 +11,37 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef GUMBOPP_DOCUMENT_HPP
-#define GUMBOPP_DOCUMENT_HPP
+#ifndef GUMBOPP_NODEITERATOR_HPP
+#define GUMBOPP_NODEITERATOR_HPP
 
-#include "Config.hpp"
 #include <gumbopp/Node.hpp>
-#include <gumbopp/NodeIterator.hpp>
-
-#include <memory>
-#include <string>
 #include <boost/iterator/iterator_facade.hpp>
 
 namespace gumbopp {
 
-class Document {
+class Document;
+
+class NodeIterator
+  : public boost::iterator_facade<NodeIterator, Node, boost::bidirectional_traversal_tag, const Node> {
 public:
-  using iterator = NodeIterator;
-  Document(Document&&);
-  ~Document();
+  explicit NodeIterator(std::function<void(NodeIterator&)>&&);
+  NodeIterator(const NodeIterator& other);
+  ~NodeIterator();
 
-  string_view GetName() const;
-  string_view GetPublicIdentifier() const;
-  string_view GetSystemIdentifier() const;
-
-  Node GetRoot() const;
-
-  iterator begin() const;
-  iterator end() const;
 private:
-  friend class Parser;
-  Document(std::function<void(Document&)>&&);
+  friend boost::iterator_core_access;
+  friend Node;
+  friend Document;
+
+  void increment();
+  void decrement();
+  bool equal(const NodeIterator&) const;
+  const Node dereference() const;
 
   class Pimpl;
   std::unique_ptr<Pimpl> impl;
 };
+
 }
+
 #endif

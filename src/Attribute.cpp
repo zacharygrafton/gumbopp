@@ -11,19 +11,24 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef GUMBOPP_DOCUMENTIMPL_HPP
-#define GUMBOPP_DOCUMENTIMPL_HPP
-
-#include <gumbopp/Document.hpp>
-#include <gumbo.h>
+#include "private/AttributeImpl.hpp"
 
 namespace gumbopp {
 
-class Document::Pimpl {
-public:
-  GumboOutput* data;
-};
-
+Attribute::Attribute(std::function<void(Attribute&)>&& populator)
+  : impl { std::make_unique<Pimpl>() } {
+  populator(*this);
 }
 
-#endif
+Attribute::~Attribute() {
+}
+
+string_view Attribute::GetName() const {
+  return string_view { impl->data->name };
+}
+
+string_view Attribute::GetValue() const {
+  return string_view { impl->data->value };
+}
+
+}

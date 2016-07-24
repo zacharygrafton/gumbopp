@@ -11,19 +11,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef GUMBOPP_DOCUMENTIMPL_HPP
-#define GUMBOPP_DOCUMENTIMPL_HPP
-
-#include <gumbopp/Document.hpp>
-#include <gumbo.h>
+#include <gumbopp/Exceptions.hpp>
 
 namespace gumbopp {
 
-class Document::Pimpl {
-public:
-  GumboOutput* data;
-};
-
+NotAnElementException::NotAnElementException() : std::runtime_error("Node is not an element.") {
 }
 
-#endif
+NotADocumentException::NotADocumentException() : std::runtime_error("Node is not a document.") {
+}
+
+NotATextualElementException::NotATextualElementException()
+  : std::runtime_error { "Element is not a textual element."} {
+}
+}

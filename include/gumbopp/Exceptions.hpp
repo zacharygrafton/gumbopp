@@ -11,19 +11,26 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef GUMBOPP_DOCUMENTIMPL_HPP
-#define GUMBOPP_DOCUMENTIMPL_HPP
+#ifndef GUMBOPP_EXCEPTIONS_HPP
+#define GUMBOPP_EXCEPTIONS_HPP
 
-#include <gumbopp/Document.hpp>
-#include <gumbo.h>
+#include <stdexcept>
 
 namespace gumbopp {
+  class NotAnElementException : public std::runtime_error {
+  public:
+    NotAnElementException();
+  };
 
-class Document::Pimpl {
-public:
-  GumboOutput* data;
-};
+  class NotADocumentException : public std::runtime_error {
+  public:
+    NotADocumentException();
+  };
 
+  class NotATextualElementException : public std::runtime_error {
+  public:
+    NotATextualElementException();
+  };
 }
 
 #endif

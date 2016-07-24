@@ -11,19 +11,19 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef GUMBOPP_DOCUMENTIMPL_HPP
-#define GUMBOPP_DOCUMENTIMPL_HPP
+#ifndef GUMBOPP_ATTRIBUTEITERATORIMPL_HPP
+#define GUMBOPP_ATTRIBUTEITERATORIMPL_HPP
 
-#include <gumbopp/Document.hpp>
+#include <gumbopp/AttributeIterator.hpp>
 #include <gumbo.h>
 
 namespace gumbopp {
 
-class Document::Pimpl {
+class AttributeIterator::Pimpl {
 public:
-  GumboOutput* data;
+  std::size_t position;
+  GumboVector* vector;
 };
 
 }
-
 #endif

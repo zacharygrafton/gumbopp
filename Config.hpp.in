@@ -11,19 +11,25 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef GUMBOPP_DOCUMENTIMPL_HPP
-#define GUMBOPP_DOCUMENTIMPL_HPP
+#ifndef GUMBOPP_CONFIG_HPP
+#define GUMBOPP_CONFIG_HPP
 
-#include <gumbopp/Document.hpp>
-#include <gumbo.h>
+#cmakedefine GUMBOPP_HAS_NONEXP_STRINGVIEW
+#ifdef GUMBOPP_HAS_NONEXP_STRINGVIEW
+#include <string_view>
+#else
+#include <experimental/string_view>
+#endif
 
 namespace gumbopp {
 
-class Document::Pimpl {
-public:
-  GumboOutput* data;
-};
+#ifdef GUMBOPP_HAS_NONEXP_STRINGVIEW
+using string_view = std::string_view;
+#else
+using string_view = std::experimental::string_view;
+#endif
 
 }
 
 #endif
+
