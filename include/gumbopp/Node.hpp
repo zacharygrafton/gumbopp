@@ -7,16 +7,30 @@
 #include <memory>
 
 namespace gumbopp {
+class NodeIterator;
 
 class Node {
 public:
+  using iterator = NodeIterator;
+
   Node(const Node& other);
   ~Node();
   Node GetParent();
+
+  bool IsElement() const;
+  bool IsComment() const;
+  bool IsWhitespace() const;
+  bool IsText() const;
+  bool IsCDATA() const;
+
   string_view GetText() const;
-  string_view GetTag() const;
+  string_view GetElement() const;
+
+  iterator begin() const;
+  iterator end() const;
 private:
   friend class Document;
+  friend class NodeIterator;
   Node(std::function<void(Node&)>&& populator);
 
   class Pimpl;

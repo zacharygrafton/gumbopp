@@ -13,6 +13,11 @@ namespace gumbopp {
   public:
     NotADocumentException();
   };
+
+  class NotATextualElementException : public std::runtime_error {
+  public:
+    NotATextualElementException();
+  };
 }
 
 #endif

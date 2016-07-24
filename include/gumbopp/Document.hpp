@@ -2,16 +2,18 @@
 #define GUMBOPP_DOCUMENT_HPP
 
 #include "Config.hpp"
+#include <gumbopp/Node.hpp>
+#include <gumbopp/NodeIterator.hpp>
 
 #include <memory>
 #include <string>
+#include <boost/iterator/iterator_facade.hpp>
 
 namespace gumbopp {
 
-class Node;
-
 class Document {
 public:
+  using iterator = NodeIterator;
   Document(Document&&);
   ~Document();
 
@@ -20,6 +22,9 @@ public:
   string_view GetSystemIdentifier() const;
 
   Node GetRoot() const;
+
+  iterator begin() const;
+  iterator end() const;
 private:
   friend class Parser;
   Document(std::function<void(Document&)>&&);

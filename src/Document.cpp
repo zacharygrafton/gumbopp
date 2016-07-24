@@ -1,9 +1,7 @@
-#include <gumbopp/Document.hpp>
-#include <gumbopp/Node.hpp>
 #include <gumbo.h>
-#include <3rdParty/include/gumbo.h>
 #include "private/DocumentImpl.hpp"
 #include "private/NodeImpl.hpp"
+#include "private/NodeIteratorImpl.hpp"
 #include <gumbopp/Exceptions.hpp>
 
 namespace gumbopp {
@@ -43,6 +41,20 @@ string_view Document::GetSystemIdentifier() const {
     throw NotADocumentException();
 
   return string_view { impl->data->document->v.document.system_identifier };
+}
+
+Document::iterator Document::begin() const {
+  return iterator { [&](iterator& iter) {
+    iter.impl->position = 0;
+    iter.impl->vector = &impl->data->document->v.document.children;
+  } };
+}
+
+Document::iterator Document::end() const {
+  return iterator { [&](iterator& iter) {
+    iter.impl->position = impl->data->document->v.document.children.length;
+    iter.impl->vector = &impl->data->document->v.document.children;
+  } };
 }
 
 }

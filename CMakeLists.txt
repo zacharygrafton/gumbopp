@@ -32,6 +32,7 @@ set(gumbopp_sources
   src/Node.cpp
   src/Parser.cpp
   src/Exceptions.cpp
+  src/NodeIterator.cpp
 )
 
 add_library(gumbopp ${gumbopp_sources})
