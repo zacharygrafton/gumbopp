@@ -21,11 +21,24 @@ namespace gumbopp {
 
 class Document;
 
+/// \brief A iterator for iterating over Nodes.
+///
+/// \author Zachary Grafton
 class NodeIterator
   : public boost::iterator_facade<NodeIterator, Node, boost::bidirectional_traversal_tag, const Node> {
 public:
+  /// \brief Don't call this.
+  ///
+  /// Bad things will happen, surely.
+  /// \author Zachary Grafton
   explicit NodeIterator(std::function<void(NodeIterator&)>&&);
+
+  /// \brief Copies a NodeIterator
+  ///
+  /// \author Zachary Grafton
   NodeIterator(const NodeIterator& other);
+
+  /// \brief Release resources acquired by a NodeIterator object.
   ~NodeIterator();
 
 private:
