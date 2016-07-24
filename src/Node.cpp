@@ -1,5 +1,6 @@
 #include <gumbopp/Node.hpp>
 #include "private/NodeImpl.hpp"
+#include "private/NodeIteratorImpl.hpp"
 #include <gumbopp/Exceptions.hpp>
 
 namespace gumbopp {
@@ -49,4 +50,21 @@ string_view Node::GetText() const {
   throw NotATextualElementException();
 }
 
+Node::iterator Node::begin() const {
+  return iterator {
+    [&](iterator& iter) {
+      iter.impl->position = 0;
+      iter.impl->vector = &impl->data->v.element.children;
+    }
+  };
+}
+
+Node::iterator Node::end() const {
+  return iterator {
+    [&](iterator& iter) {
+      iter.impl->position = impl->data->v.element.children.length;
+      iter.impl->vector = &impl->data->v.element.children;
+    }
+  };
+}
 }
