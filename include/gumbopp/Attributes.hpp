@@ -22,14 +22,39 @@ namespace gumbopp {
 class Node;
 class AttributeIterator;
 
+/// \brief Represents the attributes of a Node.
+///
+/// This class is designed to act like a container of Attribute
+/// and allows iteration of html attributes of a tag.
+/// \author Zachary Grafton
 class Attributes {
 public:
+  /// \brief The iterator used for iterating over Attributes
+  ///
   using iterator = AttributeIterator;
 
+  /// \brief Copies a set of attributes.
+  ///
+  /// Copies a set of attributes, but there is very little memory allocation,
+  /// just enough for storing a pointer and a position.
+  /// \author Zachary Grafton
   Attributes(const Attributes&);
+
+  /// \brief Releases resources acquired by an Attributes object.
+  ///
+  /// \author Zachary Grafton
   ~Attributes();
 
+  /// \brief Get an AttributeIterator pointing to the first Attribute.
+  ///
+  /// @return An AttributeIterator pointing to the first Attribute.
+  /// \author Zachary Grafton
   iterator begin() const;
+
+  /// \brief Get an AttributeIterator pointing past the last Attribute.
+  ///
+  /// @return An AttributeIterator pointing past the last Attribute.
+  /// \author Zachary Grafton
   iterator end() const;
 private:
   friend class Node;

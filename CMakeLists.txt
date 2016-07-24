@@ -3,7 +3,7 @@ project(gumbopp)
 
 set(GUMBOPP_MAJOR_VERSION 0)
 set(GUMBOPP_MINOR_VERSION 0)
-set(GUMBOPP_PATCH_VERSION 1)
+set(GUMBOPP_PATCH_VERSION 2)
 set(GUMBOPP_VERSION ${GUMBOPP_MAJOR_VERSION}.${GUMBOPP_MINOR_VERSION}.${GUMBOPP_PATCH_VERSION})
 
 set(INSTALL_INCLUDE_DIR include CACHE PATH "Installation directory for header files")
@@ -16,6 +16,15 @@ foreach(p INCLUDE CMAKE LIB)
     set(${var} "${CMAKE_INSTALL_PREFIX}/${${var}}")
   endif()
 endforeach()
+
+find_package(Doxygen)
+
+if(DOXYGEN_FOUND)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+  add_custom_target(doc ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+    WORKING DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    COMMENT "Generating API documentation with Doxygen" VERBATIM)
+endif()
 
 # Platform checks
 include(CheckCXXSourceCompiles)

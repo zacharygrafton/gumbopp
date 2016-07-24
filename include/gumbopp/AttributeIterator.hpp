@@ -21,11 +21,26 @@ namespace gumbopp {
 
 class Attributes;
 
+/// \brief A iterator for iterating over Attributes.
+///
+/// \author Zachary Grafton
 class AttributeIterator
   : public boost::iterator_facade<AttributeIterator, Attribute, boost::bidirectional_traversal_tag, const Attribute> {
 public:
+  /// \brief Don't call this.
+  ///
+  /// Bad things will happen, surely.
+  /// \author Zachary Grafton
   explicit AttributeIterator(std::function<void(AttributeIterator&)>&&);
+
+  /// \brief Copies an AttributeIterator.
+  ///
+  /// \author Zachary Grafton
   AttributeIterator(const AttributeIterator& other);
+
+  /// \brief Releases resources acquired by an AttributeIterator.
+  ///
+  /// \author Zachary Grafton
   ~AttributeIterator();
 
 private:
