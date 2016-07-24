@@ -23,26 +23,92 @@ namespace gumbopp {
 class NodeIterator;
 class Attributes;
 
+/// \brief Represents a Node in a HTML document.
+///
+/// A Node can be a tag element, a comment element, whitespace,
+/// text, or CDATA. It is recommended that you check the type of
+/// the element before calling any methods on the Node object. If
+/// you call a method on an inappropriate Node, it will throw an
+/// exception.
+/// \author Zachary Grafton
 class Node {
 public:
+  /// \brief The iterator used to iterate over the child nodes.
+  ///
   using iterator = NodeIterator;
 
+  /// \brief Copies the internal data of a Node to another Node.
+  ///
+  /// \author Zachary Grafton
   Node(const Node& other);
+
+  /// \brief Releases resources acquired by the Node object.
+  ///
+  /// \author Zachary Grafton
   ~Node();
+
+  /// \brief Get the parent Node of this Node.
+  ///
+  /// \author Zachary Grafton
   Node GetParent();
 
+  /// \brief Is this Node an element?
+  ///
+  /// \author Zachary Grafton
   bool IsElement() const;
+
+  /// \brief Is this Node a comment?
+  ///
+  /// \author Zachary Grafton
   bool IsComment() const;
+
+  /// \brief Is this Node whitespace?
+  ///
+  /// \author Zachary Grafton
   bool IsWhitespace() const;
+
+  /// \brief Is this Node text?
+  ///
+  /// \author Zachary Grafton
   bool IsText() const;
+
+  /// \brief Is this Node CDATA?
+  ///
+  /// \author Zachary Grafton
   bool IsCDATA() const;
 
+  /// \brief Get the text of the element.
+  ///
+  /// @throws NotAnElementException The Node isn't an element that has text.
+  /// @return The text of the element
+  /// \author Zachary Grafton
   string_view GetText() const;
+
+  /// \brief Get the string representation of the tag.
+  ///
+  /// The string representation of a tag is the name of the element without
+  /// any surround characters, for example <html lang="en"> would be represented
+  /// as "html".
+  /// @return The string representation of the tag.
+  /// \author Zachary Grafton
   string_view GetElement() const;
 
+  /// \brief Get a NodeIterator pointing to the first child Node.
+  ///
+  /// @return A NodeIterator pointing to the first child Node.
+  /// \author Zachary Grafton
   iterator begin() const;
+
+  /// \brief Get a NodeIterator pointing past the last child Node.
+  ///
+  /// @return A NodeIterator pointing past the last child Node.
+  /// \author Zachary Grafton
   iterator end() const;
 
+  /// \brief Get the Attributes of the Node.
+  ///
+  /// @return Attributes of the element
+  /// \author Zachary Grafton
   Attributes GetAttributes() const;
 private:
   friend class Document;

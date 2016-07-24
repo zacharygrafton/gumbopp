@@ -23,12 +23,34 @@ namespace gumbopp {
 class AttributeIterator;
 class Attributes;
 
+/// \brief Respresents a attribute of a html tag.
+///
+/// Represents a attribute of a html tag as name/value pair.
+/// \author Zachary Grafton
 class Attribute {
 public:
+  /// \brief Copy an attribute.
+  ///
+  /// Copies and attribute but does not really do a lot of copying,
+  /// basically copies a single pointer.
+  /// \author Zachary Grafton
   Attribute(const Attribute&);
+
+  /// \brief Releases resources acquired by an Attribute.
+  ///
+  /// \author Zachary Grafton
   ~Attribute();
 
+  /// \brief Get the string representation of the attribute's name.
+  ///
+  /// @return The string representation of the attribute's name.
+  /// \author Zachary Grafton
   string_view GetName() const;
+
+  /// \brief Get the string representaion of an attribute's value.
+  ///
+  /// @return The string representation of the attribute's value.
+  /// \author Zachary Grafton
   string_view GetValue() const;
 private:
   friend class AttributeIterator;

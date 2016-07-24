@@ -22,8 +22,20 @@ namespace gumbopp {
 
 class Document;
 
+/// \brief Represents a HTML parser.
+///
+/// A simple class used for parsing HTML input. Example usage:
+/// \code
+/// gumbopp Document document = Parser::parse("<html><head></head><body></body></html>");
+/// \endcode
+/// \author Zachary Grafton
 class Parser {
 public:
+  /// \brief Parse the HTML in a given std::string.
+  ///
+  /// @param The string to parse
+  /// @return A Document containing the results of the parse.
+  /// \author Zachary Grafton
   static Document parse(const std::string&);
 private:
   Parser();

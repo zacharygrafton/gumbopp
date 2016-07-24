@@ -17,16 +17,28 @@
 #include <stdexcept>
 
 namespace gumbopp {
+  /// \brief Exception thrown when a Node isn't an element.
+  ///
+  /// \author Zachary Grafton
   class NotAnElementException : public std::runtime_error {
   public:
     NotAnElementException();
   };
 
+  /// \brief Exception thrown when a Node isn't a Document.
+  ///
+  /// \author Zachary Grafton
   class NotADocumentException : public std::runtime_error {
   public:
     NotADocumentException();
   };
 
+  /// \brief Exception thrown when a Node isn't a textual element.
+  ///
+  /// A textual element is an element where the GetText method is
+  /// a valid call on the object. Whitespace, comments, cdata,
+  /// and text are all textual elements.
+  /// \author Zachary Grafton
   class NotATextualElementException : public std::runtime_error {
   public:
     NotATextualElementException();
