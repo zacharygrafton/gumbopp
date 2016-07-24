@@ -1,7 +1,8 @@
-#include <gumbopp/Node.hpp>
 #include "private/NodeImpl.hpp"
 #include "private/NodeIteratorImpl.hpp"
+#include "private/AttributesImpl.hpp"
 #include <gumbopp/Exceptions.hpp>
+#include <3rdParty/include/gumbo.h>
 
 namespace gumbopp {
 
@@ -67,4 +68,13 @@ Node::iterator Node::end() const {
     }
   };
 }
+
+Attributes Node::GetAttributes() const {
+  return Attributes {
+    [&](Attributes& attrs) {
+      attrs.impl->data = &impl->data->v.element.attributes;
+    }
+  };
+}
+
 }

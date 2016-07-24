@@ -8,6 +8,7 @@
 
 namespace gumbopp {
 class NodeIterator;
+class Attributes;
 
 class Node {
 public:
@@ -28,6 +29,8 @@ public:
 
   iterator begin() const;
   iterator end() const;
+
+  Attributes GetAttributes() const;
 private:
   friend class Document;
   friend class NodeIterator;
