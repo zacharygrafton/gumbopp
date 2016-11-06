@@ -17,17 +17,17 @@
 #include <gumbopp/Parser.hpp>
 
 BOOST_AUTO_TEST_CASE( construct_document ) {
-  gumbopp::Document document = gumbopp::Parser::parse("<!DOCTYPE html><html><head><title></title></head><body></body></html>");
+  gumbopp::Document document = gumbopp::Parser::Parse("<!DOCTYPE html><html><head><title></title></head><body></body></html>");
 }
 
 BOOST_AUTO_TEST_CASE( get_name ) {
-  gumbopp::Document document = gumbopp::Parser::parse("<!DOCTYPE html><html><head><title></title></head><body></body></html>");
+  gumbopp::Document document = gumbopp::Parser::Parse("<!DOCTYPE html><html><head><title></title></head><body></body></html>");
 
   BOOST_CHECK(document.GetName() == "html");
 }
 
 BOOST_AUTO_TEST_CASE( iterators ) {
-  gumbopp::Document document = gumbopp::Parser::parse("<!DOCTYPE html><!-- test --><html><head><title></title></head><body></body></html>");
+  gumbopp::Document document = gumbopp::Parser::Parse("<!DOCTYPE html><!-- test --><html><head><title></title></head><body></body></html>");
 
   auto begin = document.begin();
   auto end = document.end();

@@ -17,7 +17,7 @@
 
 namespace gumbopp {
 
-Document Parser::parse(const std::string& data) {
+Document Parser::Parse(const std::string& data) {
   Document document { [&](Document& doc) { doc.impl->data = gumbo_parse(data.c_str()); } };
   return document;
 }
