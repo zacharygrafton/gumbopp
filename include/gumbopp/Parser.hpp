@@ -36,7 +36,7 @@ public:
   /// @param The string to parse
   /// @return A Document containing the results of the parse.
   /// \author Zachary Grafton
-  static Document parse(const std::string&);
+  static Document Parse(const std::string&);
 private:
   Parser();
 };
