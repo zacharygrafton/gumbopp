@@ -20,6 +20,11 @@ Attribute::Attribute(std::function<void(Attribute&)>&& populator)
   populator(*this);
 }
 
+Attribute::Attribute(const Attribute& other)
+  : impl { std::make_unique<Pimpl>() } {
+  impl->data = other.impl->data;
+}
+
 Attribute::~Attribute() {
 }
 
