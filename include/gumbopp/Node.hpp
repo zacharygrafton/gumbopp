@@ -37,6 +37,11 @@ public:
   ///
   using iterator = NodeIterator;
 
+  /// \brief Initializes a Node with no state
+  ///
+  /// \author Zachary Grafton
+  Node();
+
   /// \brief Copies the internal data of a Node to another Node.
   ///
   /// \author Zachary Grafton

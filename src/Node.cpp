@@ -19,6 +19,10 @@
 
 namespace gumbopp {
 
+Node::Node() : impl { std::make_unique<Pimpl>() } {
+  impl->data = nullptr;
+}
+
 Node::Node(const Node& other) : impl { std::make_unique<Pimpl>() }{
   impl->data = other.impl->data;
 }
