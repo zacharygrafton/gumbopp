@@ -47,6 +47,11 @@ public:
   /// \author Zachary Grafton
   ~Node();
 
+  /// \brief Copies the internal data of a Node to another Node.
+  ///
+  /// \author Zachary Grafton
+  Node& operator=(const Node& other);
+
   /// \brief Get the parent Node of this Node.
   ///
   /// \author Zachary Grafton

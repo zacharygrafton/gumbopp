@@ -23,6 +23,11 @@ Node::Node(const Node& other) : impl { std::make_unique<Pimpl>() }{
   impl->data = other.impl->data;
 }
 
+Node& Node::operator=(const Node& other) {
+  impl = std::make_unique<Pimpl>();
+  impl->data = other.impl->data;
+}
+
 Node::~Node() {
 }
 
